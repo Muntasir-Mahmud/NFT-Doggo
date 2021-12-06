@@ -12,6 +12,8 @@ contract AdvanceCollectible is ERC721, VRFConsumerBase {
 
     // Variable Declear
     uint256 public tokenCounter;
+    uint256 public randomness; // test
+    bytes32 public request_id; //test
     bytes32 public keyhash;
     uint256 public fee;
     enum Breed{
@@ -44,6 +46,8 @@ contract AdvanceCollectible is ERC721, VRFConsumerBase {
 
     function fulfillRandomness(bytes32 requestId, uint256 randomNumber) internal override {
         Breed breed = Breed(randomNumber % 3);
+        randomness = randomNumber;
+        request_id = requestId;
         uint256 newTokenId = tokenCounter;
         tokenIdToBreed[newTokenId] = breed;
         emit breedAssigned(newTokenId, breed);
