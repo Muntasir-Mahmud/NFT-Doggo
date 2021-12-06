@@ -11,5 +11,6 @@ def create():
     creation_tx.wait(1)
     print("Collectible created!!")
 
+
 def main():
     create()
