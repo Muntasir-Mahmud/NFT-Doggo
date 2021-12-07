@@ -15,6 +15,11 @@ LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["development", "ganache-local"]
 OPENSEA_URL = "https://testnets.opensea.io/assets/{}/{}"
 DECIMALS = 8
 INITIAL_PRICE = 2000_00000000  # 2000 USD
+BREED_MAPPING = {0: "PUG", 1: "SHIBA_INU", 2: "ST_BERNARD"}
+
+
+def get_breed(breed_number):
+    return BREED_MAPPING[breed_number]
 
 
 def get_account(index=None, id=None):
@@ -41,18 +46,6 @@ contract_to_mock = {
 
 
 def get_contract(contract_name):
-    """
-    This function will grabe the contract address from the brownie
-    config if defined, it will deploy a mock version of that contract and
-    return that mock contract
-
-        Agrs:
-           contract_name (string)
-
-        Return:
-            brownie.network.contract.ProjectContract: The most recently deployed
-            version of this contract.
-    """
     contract_type = contract_to_mock[contract_name]
     if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         if len(contract_type) <= 0:

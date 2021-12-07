@@ -1,6 +1,5 @@
 import pytest
 from brownie import network
-from brownie.network import account
 from scripts.advanced_collectible.deploy_and_create import deploy_and_create
 from scripts.helpful_scripts import (
     LOCAL_BLOCKCHAIN_ENVIRONMENTS,
